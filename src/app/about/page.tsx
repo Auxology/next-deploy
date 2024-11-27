@@ -119,8 +119,8 @@ const MissionSection = () => {
                                 title="Committed to Excellence in Healthcare"
                             />
                             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                                We're dedicated to developing innovative pharmaceutical solutions 
-                                that address the world's most pressing health challenges.
+                                We&apos;re dedicated to developing innovative pharmaceutical solutions 
+                                that address the world&apos;s most pressing health challenges.
                             </p>
                             <ul className="space-y-4">
                                 {[
