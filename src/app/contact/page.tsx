@@ -4,6 +4,7 @@ import NavBar from "@/components/ui/NavBar";
 import { FaSquareInstagram, FaVk, FaTelegram } from "react-icons/fa6";
 import Footer from "@/components/ui/footer";
 import { motion } from "framer-motion";
+import { DynamicBackground } from "@/components/ui/dynamic-background";
 
 export default function Contact() {
     return (
@@ -13,10 +14,7 @@ export default function Contact() {
 
             {/* Main Section */}
             <div className="min-h-screen relative flex items-center justify-center py-20">
-            <div className="absolute inset-0">
-                    <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-accentColor/5 to-transparent" />
-                </div>
+                <DynamicBackground/>
                 
                 {/* Floating Elements */}
                 <div className="absolute inset-0 pointer-events-none">
@@ -133,7 +131,6 @@ export default function Contact() {
                                     </button>
                                 </form>
                             </div>
-                            <h1>helllo</h1>
                         </div>
                     </div>
                 </div>

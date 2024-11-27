@@ -1,21 +1,18 @@
 "use client";
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import Image from 'next/image';
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/footer";
 import { CountUpCard } from "@/components/ui/CountUpCard";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import ScrollToTopButton from "react-scroll-to-top";
+import { DynamicBackground } from '@/components/ui/dynamic-background';
 
 const HeroSection = () => {
     return (
         <section className="min-h-[85vh] flex flex-col items-center justify-center relative overflow-hidden">
         {/* Dynamic Background */}
-        <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5" />
-            <div className="absolute inset-0 bg-gradient-to-br from-accentColor/5 to-transparent" />
-        </div>
+        <DynamicBackground/>
         
         {/* Floating Elements */}
         <div className="absolute inset-0 pointer-events-none">
@@ -53,20 +50,14 @@ const HeroSection = () => {
                 for a healthier tomorrow.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-                <Link 
-                    href="/products" 
-                    className="group bg-accentColor text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all"
-                >
+                <button className="bg-accentColor text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all hover:transform hover:-translate-y-1 active:translate-y-0">
                     Our Products
                     <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
-                </Link>
-                <Link 
-                    href="/research" 
-                    className="group border-2 border-accentColor text-accentColor px-8 py-3 rounded-lg font-semibold hover:bg-accentColor hover:text-white transition-all"
-                >
+                </button>
+                <button className="border-2 border-accentColor text-accentColor px-8 py-3 rounded-lg font-semibold hover:bg-accentColor hover:text-white transition-all hover:transform hover:-translate-y-1 active:translate-y-0">
                     Research & Development
                     <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
-                </Link>
+                </button>
             </div>
         </motion.div>
         </section>
@@ -229,18 +220,12 @@ const CTA = () => {
                         innovative pharmaceutical solutions.
                     </p>
                     <div className="flex gap-4 justify-center">
-                        <Link 
-                            href="/contact"
-                            className="bg-white text-accentColor px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all"
-                        >
+                        <button className="bg-white text-accentColor px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all hover:transform hover:-translate-y-1 active:translate-y-0">
                             Contact Us
-                        </Link>
-                        <Link 
-                            href="/careers"
-                            className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-accentColor transition-all"
-                        >
+                        </button>
+                        <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-accentColor transition-all hover:transform hover:-translate-y-1 active:translate-y-0">
                             Join Our Team
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </section>

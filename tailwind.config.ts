@@ -141,6 +141,10 @@ const config: Config = {
             transform: "translateY(-50%)",
           },
         },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        }
       },
       animation: {
         move: "move 5s linear infinite",
@@ -152,6 +156,7 @@ const config: Config = {
         third: "moveInCircle 40s linear infinite",
         fourth: "moveHorizontal 40s ease infinite",
         fifth: "moveInCircle 20s ease infinite",
+        'float': 'float 3s ease-in-out infinite',
       },
     },
   },
