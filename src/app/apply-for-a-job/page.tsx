@@ -5,7 +5,6 @@ import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/footer";
 import { DynamicBackground } from "@/components/ui/dynamic-background";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 
 
 const benefits = [
