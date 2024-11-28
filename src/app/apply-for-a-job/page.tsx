@@ -27,7 +27,6 @@ const benefits = [
 ];
 
 export default function ApplyForAJobPage() {
-  const router = useRouter();
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900">
       <NavBar />
