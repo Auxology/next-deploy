@@ -10,34 +10,56 @@ import CardDemo from "@/components/ui/production";
 import { FeaturesSectionDemo } from "@/components/ui/WhoAreWe";
 import Footer from "@/components/ui/footer";
 import ScrollToTopButton from "react-scroll-to-top"
+import { motion } from "framer-motion";
 
 // Hero Section, Components
 const HeroSection = () => {
   const router = useRouter();
 
   return (
-    <section className="min-h-screen relative overflow-hidden">
-        <AuroraBackground>
-          <div className="flex items-center justify-center h-screen">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-center">
-              {/* Hero Section Content */}
-              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white transition-all duration-100 animate-fade-in">
-                ESCOM
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-800 dark:text-gray-200 max-w-2xl mx-auto">
-                Leading the Russian market with innovation and excellence
-              </p>
-              <div className="flex gap-4 justify-center">
-                <button className="bg-accentColor text-white font-bold py-3 px-8 rounded-lg hover:bg-green-900 transition-all duration-300 transform hover:scale-105" onClick={()=> router.push("/products")}>
-                  Explore Our Services
-                </button>
-                <button className="border-2 border-accentColor text-accentColor font-bold py-3 px-8 rounded-lg hover:bg-accentColor hover:text-white transition-all duration-300" onClick={()=> router.push("/contact")}>
-                  Contact Us
-                </button>
-              </div>
-            </div>
+    <section className="min-h-[85vh] relative overflow-hidden">
+      <AuroraBackground>
+        <motion.div 
+          className="container mx-auto px-4 text-center relative z-10 h-full flex flex-col items-center justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <span className="inline-block px-4 py-1 bg-accentColor/10 text-accentColor rounded-full text-sm font-medium mb-6">
+            Leading the Russian Market
+          </span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-gray-900 dark:text-white">
+            ESCOM <span className="text-accentColor">Group</span>
+          </h1>
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg mb-8">
+            Leading the Russian market with innovation and excellence
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <button 
+              onClick={() => router.push("/products")}
+              className="px-8 py-3 bg-accentColor text-white rounded-lg
+                       font-semibold transition-all duration-300
+                       hover:bg-opacity-90 hover:-translate-y-1 active:translate-y-0"
+            >
+              <span className="flex items-center justify-center gap-2">
+                Explore Our Services
+                <span className="group-hover:translate-x-1">→</span>
+              </span>
+            </button>
+            <button 
+              onClick={() => router.push("/contact")}
+              className="px-8 py-3 border-2 border-accentColor text-accentColor rounded-lg
+                       font-semibold transition-all duration-300
+                       hover:bg-accentColor hover:text-white hover:-translate-y-1 active:translate-y-0"
+            >
+              <span className="flex items-center justify-center gap-2">
+                Contact Us
+                <span className="group-hover:translate-x-1">→</span>
+              </span>
+            </button>
           </div>
-        </AuroraBackground>
+        </motion.div>
+      </AuroraBackground>
     </section>
   )
 }
@@ -46,25 +68,45 @@ const HeroSection = () => {
 const CTASection = () => {
   const router = useRouter();
   return (
-    <section className="bg-gradient-to-r from-accentColor to-green-700 py-12">
-        <div className="container mx-auto px-4">
-          {/* CTASection Content */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="text-white">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
-              <p className="text-lg opacity-90">Join thousands of satisfied customers today</p>
-            </div>
-            <div className="flex gap-4">
-              <button className="min-w-[160px] bg-white text-accentColor font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-all whitespace-nowrap" onClick={()=> router.push("/contact")}>
-                Contact Sales
-              </button>
-              <button className="min-w-[160px] border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-accentColor transition-all whitespace-nowrap" onClick={()=> router.push("/about")}>
-                Learn More
-              </button>
-            </div>
-          </div>
+    <section className="py-20 bg-gradient-to-r from-accentColor to-green-700">
+      <motion.div 
+        className="container mx-auto px-4 text-center text-white"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          Ready to Get Started?
+        </h2>
+        <p className="max-w-2xl mx-auto mb-8 opacity-90">
+          Join thousands of satisfied customers today
+        </p>
+        <div className="flex flex-wrap gap-4 justify-center">
+          <button 
+            onClick={() => router.push("/contact")}
+            className="px-8 py-3 bg-white text-accentColor rounded-lg
+                     font-semibold transition-all duration-300
+                     hover:bg-opacity-90 hover:-translate-y-1 active:translate-y-0"
+          >
+            <span className="flex items-center justify-center gap-2">
+              Contact Sales
+              <span className="group-hover:translate-x-1">→</span>
+            </span>
+          </button>
+          <button 
+            onClick={() => router.push("/about")}
+            className="px-8 py-3 border-2 border-white text-white rounded-lg
+                     font-semibold transition-all duration-300
+                     hover:bg-white hover:text-accentColor hover:-translate-y-1 active:translate-y-0"
+          >
+            <span className="flex items-center justify-center gap-2">
+              Learn More
+              <span className="group-hover:translate-x-1">→</span>
+            </span>
+          </button>
         </div>
-      </section>
+      </motion.div>
+    </section>
   )
 }
 
