@@ -1,4 +1,4 @@
-// @typescript-eslint/no-unused-vars
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
