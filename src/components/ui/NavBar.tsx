@@ -8,31 +8,15 @@ import Image from "next/image";
 import Logo from "@/../public/logo.svg";
 
 // Types
-type SubMenuItem = {
-  title: string;
-  href: string;
-  key: string;
-};
-
 type MenuItem = {
   title: string;
   href: string;
   key: string;
-  subItems?: SubMenuItem[];
 };
 
 // Menu Configuration
 const menuItems: MenuItem[] = [
-  {
-    title: "About",
-    href: "/about",
-    key: "about",
-    subItems: [
-      { title: "Our Story", href: "/about/our-story", key: "our-story" },
-      { title: "Our Team", href: "/about/our-team", key: "our-team" },
-      { title: "Our Impact", href: "/about/our-impact", key: "our-impact" }
-    ]
-  },
+  { title: "About", href: "/about", key: "about" },
   { title: "Products", href: "/products", key: "products" },
   { title: "Production", href: "/production", key: "production" },
   { title: "Apply for a Job", href: "/apply-for-a-job", key: "apply-for-a-job" },
@@ -106,45 +90,18 @@ export default function NavBar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center">
             {menuItems.map((item) => (
-              <div key={item.key} className="relative group">
-                {/* Desktop Menu Item */}
+              <div key={item.key} className="relative">
                 <Link 
                   href={item.href}
                   className={`flex items-center gap-2 px-3 py-2 text-sm font-medium
-                    relative group-hover:text-red-600
+                    relative hover:text-red-600
                     ${isActive(item.href) ? 'text-red-600' : 'text-gray-900 dark:text-white'}`}
                 >
                   {item.title}
-                  {item.subItems && item.subItems.length > 0 && (
-                    <FaChartLine className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
-                  )}
                   <span className="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 
-                                 scale-x-0 group-hover:scale-x-100 
+                                 scale-x-0 hover:scale-x-100 
                                  transition-transform duration-300 origin-left" />
                 </Link>
-
-                {/* Desktop Dropdown */}
-                {item.subItems && item.subItems.length > 0 && (
-                  <div className="absolute left-0 invisible group-hover:visible 
-                                opacity-0 group-hover:opacity-100 
-                                transition-all duration-200 pt-2">
-                    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg 
-                                  ring-1 ring-black/5 overflow-hidden min-w-[200px]">
-                      {item.subItems.map((subItem) => (
-                        <Link
-                          key={subItem.key}
-                          href={subItem.href}
-                          className="flex items-center gap-3 px-4 py-3 
-                                   hover:bg-gray-50 dark:hover:bg-gray-700/50 
-                                   text-gray-900 dark:text-white group/item"
-                        >
-                          {getItemIcon(subItem.key)}
-                          <span>{subItem.title}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             ))}
           </div>
@@ -178,7 +135,7 @@ export default function NavBar() {
             <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2">
               {menuItems.map((item) => (
                 <div key={item.key} className="bg-white dark:bg-gray-900 rounded-xl shadow-sm">
-                  <div onClick={() => item.subItems && toggleSubItems(item.key)}>
+                  <Link href={item.href}>
                     <div className={styles.menuItem}>
                       <div className="flex items-center gap-3">
                         <span className={styles.iconContainer}>
@@ -186,32 +143,8 @@ export default function NavBar() {
                         </span>
                         <span className="font-medium">{item.title}</span>
                       </div>
-                      {item.subItems && item.subItems.length > 0 && (
-                        <FaChartLine className={`w-4 h-4 transition-transform duration-200 
-                          ${openItem === item.key ? 'rotate-180' : ''}`} />
-                      )}
                     </div>
-                  </div>
-
-                  {/* Mobile Subitems */}
-                  {item.subItems && item.subItems.length > 0 && openItem === item.key && (
-                    <div className="bg-gray-50 dark:bg-gray-800/50">
-                      {item.subItems.map((subItem) => (
-                        <Link
-                          key={subItem.key}
-                          href={subItem.href}
-                          className="flex items-center gap-3 px-4 py-3 
-                                   hover:bg-gray-100 dark:hover:bg-gray-700/50"
-                        >
-                          <span className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-700 
-                                         flex items-center justify-center">
-                            {getItemIcon(subItem.key)}
-                          </span>
-                          <span className="text-sm font-medium">{subItem.title}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  )}
+                  </Link>
                 </div>
               ))}
             </div>

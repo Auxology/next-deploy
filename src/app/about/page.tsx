@@ -7,8 +7,11 @@ import { CountUpCard } from "@/components/ui/CountUpCard";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import ScrollToTopButton from "react-scroll-to-top";
 import { DynamicBackground } from '@/components/ui/dynamic-background';
+import { useRouter } from 'next/navigation';
 
 const HeroSection = () => {
+    const router = useRouter();
+
     return (
         <section className="min-h-[85vh] flex flex-col items-center justify-center relative overflow-hidden">
         {/* Dynamic Background */}
@@ -50,11 +53,11 @@ const HeroSection = () => {
                 for a healthier tomorrow.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-                <button className="bg-accentColor text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all hover:transform hover:-translate-y-1 active:translate-y-0">
+                <button onClick={() => router.push('/products')} className="bg-accentColor text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all hover:transform hover:-translate-y-1 active:translate-y-0">
                     Our Products
                     <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
                 </button>
-                <button className="border-2 border-accentColor text-accentColor px-8 py-3 rounded-lg font-semibold hover:bg-accentColor hover:text-white transition-all hover:transform hover:-translate-y-1 active:translate-y-0">
+                <button onClick={() => router.push('/about/rd')} className="border-2 border-accentColor text-accentColor px-8 py-3 rounded-lg font-semibold hover:bg-accentColor hover:text-white transition-all hover:transform hover:-translate-y-1 active:translate-y-0">
                     Research & Development
                     <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
                 </button>
@@ -134,11 +137,13 @@ const MissionSection = () => {
                             initial={{ opacity: 0, x: 50 }}
                             transition={{ duration: 0.5 }}
                         >
-                            <Image
-                                src="/research-lab.jpg"
-                                alt="Research Laboratory"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                            <video
+                                src="/video.mp4"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </motion.div>
@@ -149,20 +154,134 @@ const MissionSection = () => {
 }
 
 const HistorySection = () => {
+    const milestones = [
+        {
+            year: "1980",
+            title: "Company Founded",
+            description: "Established with a vision to transform healthcare through innovation.",
+            icon: "🏢",
+            color: "from-blue-500/10 to-blue-600/10"
+        },
+        {
+            year: "1995",
+            title: "Global Expansion",
+            description: "Expanded operations to 25 countries, reaching millions of patients worldwide.",
+            icon: "🌍",
+            color: "from-green-500/10 to-green-600/10"
+        },
+        {
+            year: "2005",
+            title: "Research Breakthrough",
+            description: "Pioneered revolutionary treatment methods, securing 50+ patents.",
+            icon: "🧬",
+            color: "from-purple-500/10 to-purple-600/10"
+        },
+        {
+            year: "2015",
+            title: "Digital Transformation",
+            description: "Implemented cutting-edge technology in pharmaceutical development.",
+            icon: "💻",
+            color: "from-cyan-500/10 to-cyan-600/10"
+        },
+        {
+            year: "2023",
+            title: "Sustainability Initiative",
+            description: "Launched eco-friendly practices and sustainable manufacturing processes.",
+            icon: "🌱",
+            color: "from-emerald-500/10 to-emerald-600/10"
+        }
+    ];
+
     return (
-        <section className="py-20">
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-                        <div className="flex justify-center items-center w-full">
-                            <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-                                Our History
-                            </h1>
-                        </div>
-                    </div>
+        <section className="py-20 bg-gray-50 dark:bg-gray-800">
+            <div className="container mx-auto px-4">
+                <SectionTitle
+                    subtitle="Our Journey"
+                    title="Decades of Innovation"
+                    description="From humble beginnings to global healthcare leadership"
+                    alignment="center"
+                />
+
+                {/* Timeline */}
+                <div className="mt-16 relative">
+                    {/* Timeline Line */}
+                    <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-accentColor/20" />
+
+                    {/* Timeline Items */}
+                    {milestones.map((milestone, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.2 }}
+                            className="mb-16 relative"
+                        >
+                            <div className={`flex flex-col md:flex-row items-center gap-8 ${
+                                index % 2 === 0 ? 'md:flex-row-reverse' : ''
+                            }`}>
+                                {/* Content */}
+                                <div className="flex-1">
+                                    <motion.div 
+                                        className={`bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ${
+                                            index % 2 === 0 ? 'md:text-right' : ''
+                                        }`}
+                                        whileHover={{ y: -5 }}
+                                    >
+                                        <div className="inline-block px-4 py-2 bg-accentColor/10 text-accentColor rounded-full text-sm font-medium mb-4">
+                                            {milestone.year}
+                                        </div>
+                                        <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
+                                            {milestone.title}
+                                        </h3>
+                                        <p className="text-gray-600 dark:text-gray-300 mb-4">
+                                            {milestone.description}
+                                        </p>
+                                        
+                                        {/* Progress Indicator */}
+                                        <div className="w-full bg-gray-100 dark:bg-gray-600 h-1 rounded-full overflow-hidden">
+                                            <motion.div 
+                                                className="h-full bg-accentColor"
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: '100%' }}
+                                                transition={{ duration: 1, delay: 0.5 }}
+                                            />
+                                        </div>
+                                    </motion.div>
+                                </div>
+
+                                {/* Timeline Dot & Icon */}
+                                <div className="relative">
+                                    <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center">
+                                        <motion.div 
+                                            className={`w-16 h-16 rounded-full bg-gradient-to-br ${milestone.color} flex items-center justify-center text-2xl shadow-lg`}
+                                            whileHover={{ scale: 1.1 }}
+                                            transition={{ duration: 0.2 }}
+                                        >
+                                            {milestone.icon}
+                                        </motion.div>
+                                    </div>
+                                </div>
+
+                                {/* Visual Element */}
+                                <div className="flex-1">
+                                    <motion.div
+                                        className={`h-48 rounded-xl bg-gradient-to-br ${milestone.color} p-6 flex items-center justify-center shadow-lg`}
+                                        whileHover={{ scale: 1.02 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <div className="text-6xl">
+                                            {milestone.icon}
+                                        </div>
+                                    </motion.div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
-            </section>
-    )
-}
+            </div>
+        </section>
+    );
+};
 
 const ValuesSection = () => {
     return (

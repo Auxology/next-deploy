@@ -279,7 +279,7 @@ const NewsSection = () => {
           className="flex justify-center  gap-y-8 lg:gap-y-0 flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between lg:gap-x-8">
         <div className="group w-full max-lg:max-w-xl lg:w-1/3 border border-gray-300 rounded-2xl">
           <div className="flex items-center">
-            <img src="https://pagedone.io/asset/uploads/1696244317.png" alt="blogs tailwind section"
+            <Image width={400} height={300} src="https://pagedone.io/asset/uploads/1696244317.png" alt="blogs tailwind section"
                  className="rounded-t-2xl w-full object-cover"/>
           </div>
           <div className="p-4 lg:p-6 transition-all duration-300 rounded-b-2xl group-hover:bg-gray-50">
@@ -291,7 +291,7 @@ const NewsSection = () => {
         </div>
         <div className="group w-full max-lg:max-w-xl lg:w-1/3 border border-gray-300 rounded-2xl">
           <div className="flex items-center">
-            <img src="https://pagedone.io/asset/uploads/1696244340.png" alt="blogs tailwind section"
+            <Image width={400} height={300} src="https://pagedone.io/asset/uploads/1696244340.png" alt="blogs tailwind section"
                  className="rounded-t-2xl w-full object-cover"/>
           </div>
           <div className="p-4 lg:p-6 transition-all duration-300 rounded-b-2xl group-hover:bg-gray-50">
@@ -303,7 +303,7 @@ const NewsSection = () => {
         </div>
         <div className="group w-full max-lg:max-w-xl lg:w-1/3 border border-gray-300 rounded-2xl">
           <div className="flex items-center">
-            <img src="https://pagedone.io/asset/uploads/1696244356.png" alt="blogs tailwind section"
+            <Image width={400} height={300} src="https://pagedone.io/asset/uploads/1696244356.png" alt="blogs tailwind section"
                  className="rounded-t-2xl w-full object-cover"/>
           </div>
           <div className="p-4 lg:p-6 transition-all duration-300 rounded-b-2xl group-hover:bg-gray-50">

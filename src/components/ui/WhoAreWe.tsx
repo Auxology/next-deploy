@@ -12,6 +12,9 @@ import thirdPicture from "@/../public/third.png"
 import fourthPicture from "@/../public/fourth.png"
 import fifthPicture from "@/../public/fifth.png"
 import sixthPicture from "@/../public/sixth.png"
+import videojs from 'video.js';
+import Player from 'video.js/dist/types/player';
+import 'video.js/dist/video-js.css';
 
 export function FeaturesSectionDemo() {
   const features = [
@@ -132,27 +135,83 @@ export const SkeletonOne = () => {
 };
 
 export const SkeletonThree = () => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const playerRef = useRef<Player | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!playerRef.current) {
+      const videoElement = videoRef.current;
+      if (!videoElement) return;
+
+      playerRef.current = videojs(videoElement, {
+        controls: true,
+        responsive: true,
+        fluid: true,
+        aspectRatio: '16:9',
+        sources: [{
+          src: '/video.mp4',
+          type: 'video/mp4'
+        }],
+        playbackRates: [0.5, 1, 1.5, 2],
+        poster: '/video-thumbnail.jpg',
+        controlBar: {
+          children: [
+            'playToggle',
+            'volumePanel',
+            'currentTimeDisplay',
+            'timeDivider',
+            'durationDisplay',
+            'progressControl',
+            'remainingTimeDisplay',
+            'playbackRateMenuButton',
+            'fullscreenToggle',
+          ],
+        },
+      }, () => {
+        // Player ready handler
+        const player = playerRef.current;
+        if (!player) return;
+
+        // Handle window resize
+        const resizeObserver = new ResizeObserver(() => {
+          player.width(containerRef.current?.clientWidth || 0);
+          player.height(containerRef.current?.clientHeight || 0);
+        });
+
+        if (containerRef.current) {
+          resizeObserver.observe(containerRef.current);
+        }
+
+        // Cleanup observer
+        return () => {
+          resizeObserver.disconnect();
+        };
+      });
+    }
+
+    return () => {
+      if (playerRef.current) {
+        playerRef.current.dispose();
+        playerRef.current = null;
+      }
+    };
+  }, []);
+
   return (
-      <Link
-          href="https://www.youtube.com/watch?v=RPa3_AD1_Vs"
-          target="__blank"
-          className="relative flex gap-10  h-full group/image"
+    <div className="relative flex h-full w-full">
+      <div 
+        ref={containerRef}
+        className="w-full h-full aspect-video rounded-lg overflow-hidden"
       >
-        <div className="w-full  mx-auto bg-transparent dark:bg-transparent group h-full">
-          <div className="flex flex-1 w-full h-full flex-col space-y-2  relative">
-            {/* TODO */}
-            <IconBrandYoutubeFilled className="h-20 w-20 absolute z-10 inset-0 text-red-500 m-auto " />
-            <Image
-                src={sixthPicture}
-                alt="header"
-                width={800}
-                height={800}
-                quality={100}
-                className="h-full w-full aspect-square object-cover object-center rounded-sm blur-none group-hover/image:blur-md transition-all duration-200"
-            />
-          </div>
+        <div data-vjs-player className="w-full h-full">
+          <video
+            ref={videoRef}
+            className="video-js vjs-big-play-centered vjs-theme-city"
+          />
         </div>
-      </Link>
+      </div>
+    </div>
   );
 };
 
