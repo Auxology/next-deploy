@@ -1,8 +1,9 @@
+import NavBar from "@/components/ui/NavBar";
 
 export default function Products() {
     return (
         <div>
-            <h1>Products</h1>
+            <NavBar />
         </div>
     )
 }

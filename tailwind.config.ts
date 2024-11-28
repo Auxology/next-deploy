@@ -144,6 +144,10 @@ const config: Config = {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        'gentle-float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-8px)' }
         }
       },
       animation: {
@@ -157,6 +161,7 @@ const config: Config = {
         fourth: "moveHorizontal 40s ease infinite",
         fifth: "moveInCircle 20s ease infinite",
         'float': 'float 3s ease-in-out infinite',
+        'gentle-float': 'gentle-float 4s ease-in-out infinite',
       },
     },
   },

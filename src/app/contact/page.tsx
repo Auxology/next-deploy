@@ -8,136 +8,133 @@ import { DynamicBackground } from "@/components/ui/dynamic-background";
 
 export default function Contact() {
     return (
-        <div>
-            {/* Navigation Bar */}
+        <div className="min-h-screen flex flex-col">
             <NavBar />
-
-            {/* Main Section */}
-            <div className="min-h-screen relative flex items-center justify-center py-20">
-                <DynamicBackground/>
+            
+            <main className="flex-1 flex items-center justify-center relative min-h-[calc(100vh-4rem)] mt-16">
+                <DynamicBackground />
                 
-                {/* Floating Elements */}
-                <div className="absolute inset-0 pointer-events-none">
-                    <motion.div 
-                        className="absolute w-64 h-64 bg-accentColor/10 rounded-full blur-3xl"
-                        animate={{
-                            x: [0, 100, 0],
-                            y: [0, 50, 0],
-                        }}
-                        transition={{
-                            duration: 20,
-                            repeat: Infinity,
-                        }}
-                    />
-                </div>
-                
-                {/* Content */}
-                <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-5xl mx-auto bg-white/90 backdrop-blur-md rounded-2xl shadow-xl p-8">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                            {/* Contact Info Section */}
-                            <div className="p-6 rounded-xl bg-white/50">
-                                <h2 className="text-3xl font-bold text-accentColor dark:text-white mb-6">
-                                    Contact Us Directly
-                                </h2>
-                                <div className="space-y-8">
-                                    <p className="text-gray-900 dark:text-white">
-                                        <strong>Phone:</strong> +7 (8652) 33-33-33
-                                    </p>
-                                    <p className="text-gray-900 dark:text-white">
-                                        <strong>Email:</strong> info@escom.group
-                                    </p>
-                                    <Link className="flex" href="https://www.google.com/maps/search/?api=1&query=Russia+355000,+Stavropol,+Staromarievskoye+highway+9">
-                                        <p className="text-gray-900 dark:text-white hover:text-green-700 transition-colors">
-                                        <strong>Address:</strong> Russia 355000, Stavropol, Staromarievskoye highway 9
-                                        </p>
-                                    </Link>
-                                    <h2 className="text-2xl font-bold text-accentColor dark:text-white mt-6">
-                                        Follow Us on Social Media
+                <div className="w-full py-20 px-4">
+                    <div className="w-full max-w-5xl mx-auto">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="rounded-2xl overflow-hidden"
+                        >
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
+                                {/* Contact Info Section */}
+                                <div className="p-8 md:p-10 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg">
+                                    <h2 className="text-3xl font-bold bg-gradient-to-r from-accentColor to-accentColor/80 bg-clip-text text-transparent mb-8">
+                                        Contact Us Directly
                                     </h2>
-                                    <div className="flex flex-row gap-6">
-                                        <FaSquareInstagram
-                                            className="text-4xl hover:text-green-700 transition-colors"
-                                            aria-label="Instagram"
-                                        />
-                                        <FaTelegram
-                                            className="text-4xl hover:text-green-700 transition-colors"
-                                            aria-label="Telegram"
-                                        />
-                                        <FaVk
-                                            className="text-4xl hover:text-green-700 transition-colors"
-                                            aria-label="VK"
-                                        />
+                                    <div className="space-y-6">
+                                        <div className="flex items-center space-x-3 group">
+                                            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accentColor/10 to-transparent
+                                                        flex items-center justify-center transition-transform duration-300
+                                                        group-hover:scale-110">
+                                                <span className="text-xl">📞</span>
+                                            </div>
+                                            <p className="text-gray-700">+7 (8652) 33-33-33</p>
+                                        </div>
+                                        
+                                        <div className="flex items-center space-x-3 group">
+                                            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accentColor/10 to-transparent
+                                                        flex items-center justify-center transition-transform duration-300
+                                                        group-hover:scale-110">
+                                                <span className="text-xl">📧</span>
+                                            </div>
+                                            <p className="text-gray-700">info@escom.group</p>
+                                        </div>
+                                        
+                                        <Link 
+                                            href="https://www.google.com/maps/search/?api=1&query=Russia+355000,+Stavropol,+Staromarievskoye+highway+9"
+                                            className="flex items-center space-x-3 group hover:text-accentColor transition-colors"
+                                        >
+                                            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accentColor/10 to-transparent
+                                                        flex items-center justify-center transition-transform duration-300
+                                                        group-hover:scale-110">
+                                                <span className="text-xl">📍</span>
+                                            </div>
+                                            <p className="text-gray-700 group-hover:text-accentColor transition-colors">
+                                                Russia 355000, Stavropol,<br />Staromarievskoye highway 9
+                                            </p>
+                                        </Link>
+
+                                        <h3 className="text-2xl font-bold text-gray-800 mt-10 mb-6">
+                                            Follow Us
+                                        </h3>
+                                        <div className="flex gap-4">
+                                            {[FaSquareInstagram, FaTelegram, FaVk].map((Icon, index) => (
+                                                <button 
+                                                    key={index}
+                                                    className="w-12 h-12 rounded-lg bg-gradient-to-br from-accentColor/10 to-transparent
+                                                             flex items-center justify-center transition-all duration-300
+                                                             hover:scale-110 hover:shadow-lg hover:shadow-accentColor/20"
+                                                >
+                                                    <Icon className="text-2xl text-gray-700 hover:text-accentColor transition-colors" />
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Contact Form Section */}
-                            <div className="p-6 rounded-xl bg-white/50">
-                                <h2 className="text-3xl font-bold text-accentColor dark:text-white mb-6">
-                                    Write Us a Message
-                                </h2>
-                                <form className="space-y-6">
-                                    <div>
-                                        <label
-                                            htmlFor="name"
-                                            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                {/* Contact Form Section */}
+                                <div className="p-8 md:p-10 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg">
+                                    <h2 className="text-3xl font-bold bg-gradient-to-r from-accentColor to-accentColor/80 bg-clip-text text-transparent mb-8">
+                                        Write Us a Message
+                                    </h2>
+                                    <form className="space-y-6">
+                                        {['name', 'email'].map((field) => (
+                                            <div key={field}>
+                                                <label className="block text-sm font-medium text-gray-700 mb-2 capitalize">
+                                                    {field}
+                                                </label>
+                                                <input
+                                                    type={field}
+                                                    required
+                                                    placeholder={`Enter your ${field}`}
+                                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 
+                                                             focus:outline-none focus:ring-2 focus:ring-accentColor/20 focus:border-accentColor
+                                                             transition-all duration-300 bg-white/50 backdrop-blur-sm"
+                                                />
+                                            </div>
+                                        ))}
+                                        
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                Message
+                                            </label>
+                                            <textarea
+                                                rows={4}
+                                                required
+                                                placeholder="Enter your message"
+                                                className="w-full px-4 py-3 rounded-lg border border-gray-200 
+                                                         focus:outline-none focus:ring-2 focus:ring-accentColor/20 focus:border-accentColor
+                                                         transition-all duration-300 bg-white/50 backdrop-blur-sm"
+                                            />
+                                        </div>
+
+                                        <button
+                                            type="submit"
+                                            className="w-full px-8 py-4 bg-accentColor text-white rounded-lg
+                                                     relative overflow-hidden group transition-all duration-300
+                                                     hover:shadow-lg hover:shadow-accentColor/20"
                                         >
-                                            Name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="name"
-                                            required
-                                            placeholder="Enter your name"
-                                            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-accentColor focus:border-accentColor dark:bg-gray-800 dark:text-white"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label
-                                            htmlFor="email"
-                                            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                                        >
-                                            Email
-                                        </label>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            required
-                                            placeholder="Enter your email"
-                                            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-accentColor focus:border-accentColor dark:bg-gray-800 dark:text-white"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label
-                                            htmlFor="message"
-                                            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                                        >
-                                            Message
-                                        </label>
-                                        <textarea
-                                            id="message"
-                                            rows={4}
-                                            required
-                                            placeholder="Enter your message"
-                                            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-accentColor focus:border-accentColor dark:bg-gray-800 dark:text-white"
-                                        ></textarea>
-                                    </div>
-                                    <button
-                                        type="submit"
-                                        className="w-full bg-accentColor text-white font-bold py-3 px-6 rounded-lg hover:bg-green-900 transition-colors transform hover:scale-105 duration-200"
-                                    >
-                                        Send Message
-                                    </button>
-                                </form>
+                                            <span className="relative z-10 flex items-center justify-center gap-2 font-medium">
+                                                Send Message
+                                                <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+                                            </span>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
-            </div>
+            </main>
 
-            {/* Footer */}
-            <Footer/>
+            <Footer />
         </div>
     );
 }

@@ -13,7 +13,7 @@ const HeroSection = () => {
         <section className="min-h-[85vh] flex flex-col items-center justify-center relative overflow-hidden">
         {/* Dynamic Background */}
         <DynamicBackground/>
-        
+                
         {/* Floating Elements */}
         <div className="absolute inset-0 pointer-events-none">
             <motion.div 

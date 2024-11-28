@@ -5,10 +5,28 @@ import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
 import Logo from "@/../public/logo.svg";
+import { title } from "process";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+
+ type subMenuItem = {
+  title: string;
+  href: string;
+ }
+
+ const menuItems = [
+  {title: "About", href: "/about", key: "about", subItems: [
+    {title: "Our Story", href: "/about/our-story"},
+    {title: "Our Team", href: "/about/our-team"},
+    {title: "Our Impact", href: "/about/our-impact"}
+  ]},
+  {title: "Products", href: "/products", key: "products"},
+  {title: "Production", href: "/production", key: "production"},
+  {title: "Apply for a Job", href: "/apply-for-a-job", key: "apply-for-a-job"},
+  {title: "Contact", href: "/contact", key: "contact"}
+ ]
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -27,21 +45,11 @@ export default function NavBar() {
           </div>
           <div className="hidden md:flex flex-1 justify-center">
             <div className="flex items-center space-x-6">
-              <Link href="/about" className={`text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:text-red-600 ${isActive('/about') ? 'text-red-600' : 'hover:text-gray-700 dark:hover:text-gray-300'}`}>
-                About
-              </Link>
-              <Link href="/products" className={`text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:text-red-600 ${isActive('/products') ? 'text-red-600' : 'hover:text-gray-700 dark:hover:text-gray-300'}`}>
-                Products
-              </Link>
-              <Link href="/production" className={`text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:text-red-600 ${isActive('/production') ? 'text-red-600' : 'hover:text-gray-700 dark:hover:text-gray-300'}`}>
-                Production
-              </Link>
-              <Link href="/apply-for-a-job" className={`text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:text-red-600 ${isActive('/apply-for-a-job') ? 'text-red-600' : 'hover:text-gray-700 dark:hover:text-gray-300'}`}>
-                Apply for a Job
-              </Link>
-              <Link href="/contact" className={`text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:text-red-600 ${isActive('/contact') ? 'text-red-600' : 'hover:text-gray-700 dark:hover:text-gray-300'}`}>
-                Contact
-              </Link>
+              {menuItems.map((item) => (
+                <Link href={item.href} className={`text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:text-red-600 ${isActive(item.href) ? 'text-red-600' : 'hover:text-gray-700 dark:hover:text-gray-300'}`}>
+                  {item.title}
+                </Link>
+              ))}
             </div>
           </div>
           <div className="hidden md:block flex-shrink-0">

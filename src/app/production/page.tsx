@@ -1,3 +1,9 @@
+import NavBar from "@/components/ui/NavBar";
+
 export default function Production() {
-    return <div>Production</div>;
+    return(
+        <div>
+            <NavBar />
+        </div>
+    )
 }
