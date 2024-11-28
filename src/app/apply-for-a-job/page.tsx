@@ -5,6 +5,7 @@ import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/footer";
 import { DynamicBackground } from "@/components/ui/dynamic-background";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 
 const benefits = [
@@ -26,6 +27,7 @@ const benefits = [
 ];
 
 export default function ApplyForAJobPage() {
+  const router = useRouter();
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900">
       <NavBar />
@@ -67,7 +69,7 @@ export default function ApplyForAJobPage() {
               </div>
 
               <div className="flex flex-col gap-4 ">
-                <button className="flex-1 px-10 py-3  bg-accentColor text-white rounded-lg
+                <button onClick={() => window.open('https://t.me/escomgroup', '_blank')} className="flex-1 px-10 py-3  bg-accentColor text-white rounded-lg
                                font-semibold transition-all duration-300
                                hover:bg-opacity-90 hover:-translate-y-1 active:translate-y-0">
                   <span className="flex items-center justify-center gap-2">
@@ -76,7 +78,7 @@ export default function ApplyForAJobPage() {
                   </span>
                 </button>
                 
-                <button className="flex-1 px-8 py-3 border-2 border-accentColor text-accentColor rounded-lg
+                <button onClick={() => window.open('https://www.linkedin.com/company/escom-group/', '_blank')} className="flex-1 px-8 py-3 border-2 border-accentColor text-accentColor rounded-lg
                                font-semibold transition-all duration-300
                                hover:bg-accentColor hover:text-white hover:-translate-y-1 active:translate-y-0">
                   <span className="flex items-center justify-center gap-2">

@@ -7,6 +7,13 @@ import { motion } from "framer-motion";
 import { DynamicBackground } from "@/components/ui/dynamic-background";
 
 export default function Contact() {
+
+    const links = [
+        'https://www.instagram.com/escom.group/',
+        'https://t.me/escomgroup/',
+        'https://vk.com/escom.group'
+    ]
+
     return (
         <div className="min-h-screen flex flex-col">
             <NavBar />
@@ -68,6 +75,7 @@ export default function Contact() {
                                             {[FaSquareInstagram, FaTelegram, FaVk].map((Icon, index) => (
                                                 <button 
                                                     key={index}
+                                                    onClick={() => window.open(links[index], '_blank')}
                                                     className="w-12 h-12 rounded-lg bg-gradient-to-br from-accentColor/10 to-transparent
                                                              flex items-center justify-center transition-all duration-300
                                                              hover:scale-110 hover:shadow-lg hover:shadow-accentColor/20"

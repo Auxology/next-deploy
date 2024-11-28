@@ -329,6 +329,7 @@ const ValuesSection = () => {
 }
 
 const CTA = () => {
+    const router = useRouter();
     return (
         <section className="py-20 bg-gradient-to-r from-accentColor to-green-700">
                 <div className="container mx-auto px-4 text-center text-white">
@@ -340,10 +341,10 @@ const CTA = () => {
                         innovative pharmaceutical solutions.
                     </p>
                     <div className="flex gap-4 justify-center">
-                        <button className="bg-white text-accentColor px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all hover:transform hover:-translate-y-1 active:translate-y-0">
+                        <button onClick={() => router.push('/contact')} className="bg-white text-accentColor px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all hover:transform hover:-translate-y-1 active:translate-y-0">
                             Contact Us
                         </button>
-                        <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-accentColor transition-all hover:transform hover:-translate-y-1 active:translate-y-0">
+                        <button onClick={() => router.push('/apply-for-a-job')} className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-accentColor transition-all hover:transform hover:-translate-y-1 active:translate-y-0">
                             Join Our Team
                         </button>
                     </div>

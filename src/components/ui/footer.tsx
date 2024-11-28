@@ -36,25 +36,25 @@ export default function Footer()  {
                             </Link>
                         </div>
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <h2 className="text-lg font-bold">Social Media</h2>
                         <div className="flex flex-row items-center mt-2">
-                            <Link href="https://www.instagram.com/escom_group/" target="_blank">
-                            <FaSquareInstagram className="text-xl hover:text-accentColor transition-all duration-300"/>
-                            </Link>
+                            <Link className="flex flex-row items-center hover:text-accentColor transition-all duration-300" href="https://www.instagram.com/escom.group/" target="_blank">
+                            <FaSquareInstagram className="text-xl "/>
                             <p className="text-sm ml-2">Instagram</p>
+                            </Link>
                         </div>
                         <div className="flex flex-row item-center mt-2">
-                            <Link href="https://t.me/escom_group" target="_blank">
-                            <FaTelegram className="text-xl hover:text-accentColor transition-all duration-300"/>
-                            </Link>
+                            <Link className="flex flex-row items-center hover:text-accentColor transition-all duration-300" href="https://t.me/escomgroup/" target="_blank">
+                            <FaTelegram className="text-xl"/>
                             <p className="text-sm ml-2">Telegram</p>
+                            </Link>
                         </div>
                         <div className="flex flex-row item-center mt-2">
-                            <Link href="https://vk.com/escom_group" target="_blank">
-                            <FaVk className="text-xl hover:text-accentColor transition-all duration-300"/>
+                            <Link className="flex flex-row items-center hover:text-accentColor transition-all duration-300" href="https://vk.com/escom.group" target="_blank">
+                            <FaVk className="text-xl"/>
+                            <p className="text-sm ml-2">VK</p>      
                             </Link>
-                            <p className="text-sm ml-2">VK</p>
                         </div>
                     </div>
                     <div>
