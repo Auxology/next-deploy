@@ -1,12 +1,12 @@
 "use client";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
-import { GiAtom, GiMedicinePills } from "react-icons/gi";
-import { MdHealthAndSafety } from "react-icons/md";
+import { GiMicroscope  } from "react-icons/gi";
+import { MdHealthAndSafety, MdOutlineBiotech } from "react-icons/md";
 import { AiFillSafetyCertificate } from "react-icons/ai";
+import { TbCertificate } from "react-icons/tb";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import NavBar from "@/components/ui/NavBar";
-import CardDemo from "@/components/ui/production";
 import { FeaturesSectionDemo } from "@/components/ui/WhoAreWe";
 import Footer from "@/components/ui/footer";
 import ScrollToTopButton from "react-scroll-to-top"
@@ -17,46 +17,109 @@ const HeroSection = () => {
   const router = useRouter();
 
   return (
-    <section className="min-h-[85vh] relative overflow-hidden">
-      <AuroraBackground>
+    <section className="relative overflow-hidden">
+      <AuroraBackground className="min-h-screen flex items-center justify-center">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <Image
+            src="/images/lab-pattern.jpg"
+            alt="Laboratory Pattern"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+        
         <motion.div 
-          className="container mx-auto px-4 text-center relative z-10 h-full flex flex-col items-center justify-center"
+          className="container mx-auto px-4 sm:px-6 py-16 md:py-0 relative z-10 flex flex-col md:flex-row 
+                     items-center justify-center md:justify-between gap-8 md:gap-12 w-full"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className="inline-block px-4 py-1 bg-accentColor/10 text-accentColor rounded-full text-sm font-medium mb-6">
-            Leading the Russian Market
-          </span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-gray-900 dark:text-white">
-            ESCOM <span className="text-accentColor">Group</span>
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg mb-8">
-            Leading the Russian market with innovation and excellence
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <button 
-              onClick={() => router.push("/products")}
-              className="px-8 py-3 bg-accentColor text-white rounded-lg
-                       font-semibold transition-all duration-300
-                       hover:bg-opacity-90 hover:-translate-y-1 active:translate-y-0"
-            >
-              <span className="flex items-center justify-center gap-2">
-                Explore Our Services
-                <span className="group-hover:translate-x-1">→</span>
+          {/* Left side - Text Content */}
+          <div className="flex-1 flex flex-col items-center md:items-start w-full md:w-1/2 space-y-6 md:space-y-8">
+            {/* Certification Badge */}
+            <div className="flex flex-col sm:flex-row items-center gap-2 bg-white/80 dark:bg-gray-800/80 
+                          backdrop-blur-sm px-3 py-2 sm:px-6 sm:py-3 rounded-lg border border-accentColor/20 
+                          w-fit">
+              <AiFillSafetyCertificate className="text-xl sm:text-2xl text-accentColor" />
+              <span className="text-[11px] sm:text-sm font-semibold text-gray-800 dark:text-gray-200 text-center sm:text-left">
+                ISO 9001:2015 Certified Pharmaceutical Company
               </span>
-            </button>
-            <button 
-              onClick={() => router.push("/contact")}
-              className="px-8 py-3 border-2 border-accentColor text-accentColor rounded-lg
-                       font-semibold transition-all duration-300
-                       hover:bg-accentColor hover:text-white hover:-translate-y-1 active:translate-y-0"
-            >
-              <span className="flex items-center justify-center gap-2">
-                Contact Us
-                <span className="group-hover:translate-x-1">→</span>
-              </span>
-            </button>
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white 
+                         leading-tight sm:leading-tight md:leading-tight text-center md:text-left">
+              Advancing <span className="text-accentColor dark:text-accentColor/90">Healthcare</span>
+              <br className="hidden sm:block" />
+              Through <span className="text-gray-800 dark:text-gray-100">Scientific Excellence</span>
+            </h1>
+            
+            {/* Trust indicators */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full max-w-xl">
+              {[
+                { icon: <GiMicroscope className="w-5 h-5 sm:w-6 sm:h-6 text-accentColor" />, text: "Advanced Research Facilities" },
+                { icon: <TbCertificate className="w-5 h-5 sm:w-6 sm:h-6 text-accentColor" />, text: "GMP Certified" },
+                { icon: <MdOutlineBiotech className="w-5 h-5 sm:w-6 sm:h-6 text-accentColor" />, text: "State-of-the-art Labs" },
+                { icon: <MdHealthAndSafety className="w-5 h-5 sm:w-6 sm:h-6 text-accentColor" />, text: "Quality Assured" },
+              ].map((item, index) => (
+                <div key={index} className="flex items-center justify-center md:justify-start gap-2 text-gray-700 dark:text-gray-300">
+                  {item.icon}
+                  <span className="text-sm sm:text-base">{item.text}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 w-full sm:w-auto">
+              <button 
+                onClick={() => router.push("/products")}
+                className="w-full sm:w-auto px-4 sm:px-8 py-3 bg-accentColor text-white rounded-lg
+                         text-sm sm:text-base font-semibold transition-all duration-300 shadow-md
+                         hover:shadow-xl hover:shadow-accentColor/20 hover:-translate-y-1 active:translate-y-0"
+              >
+                <span className="flex items-center justify-center gap-2">
+                  Explore Our Products
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </button>
+              <button 
+                onClick={() => router.push("/contact")}
+                className="w-full sm:w-auto px-4 sm:px-8 py-3 border-2 border-gray-700 dark:border-gray-300 
+                         text-gray-700 dark:text-gray-300 rounded-lg text-sm sm:text-base font-semibold 
+                         transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+              >
+                <span className="flex items-center justify-center gap-2">
+                  Medical Professional Inquiry
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* Right side - Image Showcase */}
+          <div className="flex-1 w-full md:w-1/2">
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-[4/3] max-w-2xl mx-auto">
+              <Image
+                src="/seventh.png"
+                alt="Advanced Laboratory Equipment"
+                fill
+                className="object-cover rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl"
+                priority
+              />
+              <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 
+                            bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-2 sm:p-4 rounded-lg">
+                <p className="text-[11px] sm:text-sm text-gray-600 dark:text-gray-300 text-center">
+                  Our state-of-the-art research and development facility
+                </p>
+              </div>
+            </div>
           </div>
         </motion.div>
       </AuroraBackground>
@@ -113,62 +176,191 @@ const CTASection = () => {
 // ProductionSection, Components
 const ProductionSection = () => {
   return (
-    <section id="production">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Production Section Content */}
-          <div className="flex flex-col items-center justify-center h-full space-y-4">
-            {/* Production Section Title */}
-            <h2 className="text-4xl font-bold text-gray-900 text-center mt-24">Production</h2>
+    <section id="production" className="py-24 bg-gray-50 dark:bg-gray-800">
+      <div className="container mx-auto px-4">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="flex justify-center items-center gap-2 mb-4">
+            <MdHealthAndSafety className="text-2xl text-accentColor" />
+            <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+              Pharmaceutical Excellence
+            </span>
           </div>
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-20">
-            {/* Card 1 */}
-            <CardDemo/>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white text-center">
+            Advanced Manufacturing & Quality Control
+          </h2>
+        </div>
 
-            {/* Card 2 */}
-            <div
-                className="max-w-sm w-full mx-auto p-8 rounded-xl border border-[rgba(255,255,255,0.10)] dark:bg-[rgba(40,40,40,0.70)] bg-gray-100 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] group">
-              <h3 className="text-xl text-center font-bold text-gray-800 dark:text-white py-2">Mission</h3>
-              <div className="flex flex-col gap-10 mt-10 space-y-10 justify-center items-center">
-                <div className="flex items-center justify-center gap-4">
-                  <GiMedicinePills className="text-5xl text-accentColor hover:text-green-900"/>
-                  <p className="text-sm font-normal text-neutral-600 dark:text-neutral-400 max-w-sm">Lorem ipsum dolor
-                    sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <div className="flex items-center justify-center gap-x-4">
-                    <GiAtom className="text-5xl text-accentColor hover:text-green-900"/>
-                  <p className="text-sm font-normal text-neutral-600 dark:text-neutral-400 max-w-sm">Lorem ipsum dolor
-                    sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <button className="bg-accentColor text-white font-bold py-2 px-4 rounded-md hover:bg-green-900">See
-                  our Presentation
-                </button>
-              </div>
+        {/* Main Facility Showcase */}
+        <div className="mb-16 relative rounded-2xl overflow-hidden">
+          <Image
+            src="/quaility.png" // Add panoramic facility image
+            alt="Production Facility"
+            width={1200}
+            height={500}
+            className="w-full object-cover h-[400px]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+            <div className="p-8 text-white">
+              <h3 className="text-2xl font-bold mb-2">State-of-the-Art Manufacturing Facility</h3>
+              <p className="max-w-2xl">
+                Our EU-GMP certified facility equipped with the latest pharmaceutical manufacturing technology
+              </p>
             </div>
-
-              {/* Card 3 */}
-            <div
-                className="max-w-sm w-full mx-auto p-8 rounded-xl border border-[rgba(255,255,255,0.10)] dark:bg-[rgba(40,40,40,0.70)] bg-gray-100 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] group">
-              <h3 className="text-xl text-center font-bold text-gray-800 dark:text-white py-2">Safety</h3>
-              <div className="flex flex-col gap-10 mt-10 space-y-10 justify-center items-center">
-                <div className="flex items-center justify-center gap-4">
-                    <MdHealthAndSafety className="text-5xl text-accentColor hover:text-green-900"/>
-                  <p className="text-sm font-normal text-neutral-600 dark:text-neutral-400 max-w-sm">Lorem ipsum dolor
-                    sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <div className="flex items-center justify-center gap-x-4">
-                    <AiFillSafetyCertificate className="text-5xl text-accentColor hover:text-green-900"/>
-                  <p className="text-sm font-normal text-neutral-600 dark:text-neutral-400 max-w-sm">Lorem ipsum dolor
-                    sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <button className="bg-accentColor text-white font-bold py-2 px-4 rounded-md hover:bg-green-900">Read
-                  More
-                </button>
-              </div>
-            </div>
-
           </div>
         </div>
-      </section>
+
+        {/* Process Showcase */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg">
+            <div className="relative h-48">
+              <Image
+                src="/research.png"
+                alt="Research Laboratory"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Research & Development
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Advanced laboratories for pharmaceutical innovation
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <span className="text-accentColor">✓</span>
+                  <span>Modern Equipment</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-accentColor">✓</span>
+                  <span>Expert Scientists</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-accentColor">✓</span>
+                  <span>Quality Control</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Quality Control Card */}
+          <div className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg">
+            <div className="relative h-48">
+              <Image
+                src="/eight.png" // Add QC lab image
+                alt="Quality Control Laboratory"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Quality Control
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Rigorous testing and quality assurance protocols
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <span className="text-accentColor">✓</span>
+                  <span>Analytical Testing</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-accentColor">✓</span>
+                  <span>Stability Studies</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-accentColor">✓</span>
+                  <span>Batch Validation</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Manufacturing Card */}
+          <div className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg">
+            <div className="relative h-48">
+              <Image
+                src="/manufactoring.png" // Add manufacturing facility image
+                alt="Manufacturing Facility"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Manufacturing Excellence
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                State-of-the-art production facilities
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <span className="text-accentColor">✓</span>
+                  <span>GMP Compliance</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-accentColor">✓</span>
+                  <span>Automated Systems</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-accentColor">✓</span>
+                  <span>Clean Room Facilities</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Additional Trust Indicators */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Quality Metrics */}
+          <div className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+            <h4 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">
+              Quality Metrics
+            </h4>
+            <div className="relative h-64">
+              <Image
+                src="/images/quality-metrics.jpg" // Add quality metrics visualization
+                alt="Quality Metrics Dashboard"
+                fill
+                className="object-cover rounded-lg"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                <p className="text-white text-sm">
+                  Real-time monitoring and quality control systems
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Certification Showcase */}
+          <div className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+            <h4 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">
+              International Standards
+            </h4>
+            <div className="relative h-64">
+              <Image
+                src="/images/certifications.jpg" // Add certification showcase
+                alt="International Certifications"
+                fill
+                className="object-cover rounded-lg"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                <p className="text-white text-sm">
+                  Meeting and exceeding global pharmaceutical standards
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 

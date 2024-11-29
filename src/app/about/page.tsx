@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/footer";
 import { CountUpCard } from "@/components/ui/CountUpCard";
@@ -9,6 +8,7 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import ScrollToTopButton from "react-scroll-to-top";
 import { DynamicBackground } from '@/components/ui/dynamic-background';
 import { useRouter } from 'next/navigation';
+import { AiFillSafetyCertificate } from 'react-icons/ai';
 
 const HeroSection = () => {
     const router = useRouter();
@@ -285,48 +285,63 @@ const HistorySection = () => {
 };
 
 const ValuesSection = () => {
+    const values = [
+        {
+            icon: "🔬",
+            title: "Scientific Integrity",
+            description: "Upholding the highest standards of pharmaceutical research and development"
+        },
+        {
+            icon: "⚕️",
+            title: "Patient Safety",
+            description: "Rigorous quality control and pharmacovigilance in every product"
+        },
+        {
+            icon: "🏥",
+            title: "Medical Excellence",
+            description: "Collaboration with healthcare professionals for optimal patient outcomes"
+        }
+    ];
+
     return (
-        <section className="py-20 bg-gray-50 dark:bg-gray-800">
-                <div className="container mx-auto px-4">
-                    <SectionTitle
-                        subtitle="Our Values"
-                        title="What Drives Us Forward"
-                        alignment="center"
-                    />
-                    <div className="grid md:grid-cols-3 gap-8 mt-12">
-                        {[
-                            {
-                                icon: "🔬",
-                                title: "Scientific Excellence",
-                                description: "Pushing the boundaries of pharmaceutical innovation"
-                            },
-                            {
-                                icon: "🤝",
-                                title: "Patient First",
-                                description: "Committed to improving patient outcomes globally"
-                            },
-                            {
-                                icon: "🌍",
-                                title: "Global Impact",
-                                description: "Creating sustainable healthcare solutions"
-                            }
-                        ].map((value, index) => (
-                            <motion.div
-                                key={index}
-                                className="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg"
-                                whileHover={{ y: -8 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <div className="text-4xl mb-4">{value.icon}</div>
-                                <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                                <p className="text-gray-600 dark:text-gray-300">{value.description}</p>
-                            </motion.div>
-                        ))}
+        <section className="py-24 bg-white dark:bg-gray-900">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                        <AiFillSafetyCertificate className="text-2xl text-accentColor" />
+                        <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                            Our Commitment
+                        </span>
                     </div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+                        Professional Standards in Healthcare
+                    </h2>
                 </div>
-            </section>
-    )
-}
+                
+                <div className="grid md:grid-cols-3 gap-8">
+                    {values.map((value, index) => (
+                        <motion.div
+                            key={index}
+                            className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 border-t-4 border-t-accentColor"
+                            whileHover={{ y: -8 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <div className="w-16 h-16 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center mb-6 shadow-md">
+                                <span className="text-2xl">{value.icon}</span>
+                            </div>
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                                {value.title}
+                            </h3>
+                            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                {value.description}
+                            </p>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
 
 const CTA = () => {
     const router = useRouter();
