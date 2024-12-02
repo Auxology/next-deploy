@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
+{/*This is the navigation bar for the website, we used react-icons for the icons, variables and styles are defined below*/}
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaBars, FaTimes, FaHome, FaInfoCircle, FaBox, FaCog, 
          FaBriefcase, FaEnvelope, FaBook, FaUsers, FaChartLine, FaSearch } from "react-icons/fa";
 import Image from "next/image";
-import Logo from "@/../public/logo.svg";
+import Logo from "@/../public/images/logo.svg";
 
 // Types
 type MenuItem = {
@@ -41,18 +42,20 @@ const iconMap: Record<string, JSX.Element> = {
 const styles = {
   nav: "bg-white dark:bg-gray-900 shadow-md fixed top-0 w-full z-50 h-20",
   container: "container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full",
-  searchInput: `w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 
-                dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 
-                backdrop-blur-sm text-gray-900 dark:text-white 
-                focus:ring-2 focus:ring-red-500/30 focus:border-red-500 
-                transition-all duration-200 shadow-sm`,
+  searchInput: `w-full pl-12 pr-4 py-3 border-2 border-gray-300 
+                dark:border-gray-700 bg-white dark:bg-gray-800 
+                text-gray-900 dark:text-white text-base
+                focus:ring-2 focus:ring-red-500 focus:border-red-500 
+                hover:border-red-400
+                shadow-md transition-all duration-200
+                outline-none`,
   menuItem: `flex items-center justify-between p-4 
              active:bg-gray-100 dark:active:bg-gray-700 
              transition-colors duration-150`,
-  iconContainer: `w-10 h-10 rounded-xl flex items-center justify-center 
+  iconContainer: `w-10 h-10 flex items-center justify-center 
                   transition-colors duration-150`,
   actionButton: `w-full bg-red-600 hover:bg-red-700 active:bg-red-800 
-                 text-white font-medium px-4 py-3 rounded-xl 
+                 text-white font-medium px-4 py-3
                  transition-colors duration-150 shadow-sm 
                  flex items-center justify-center gap-2`
 };
@@ -68,13 +71,15 @@ export default function NavBar() {
 
   // Search Component
   const SearchInput = () => (
-    <div className="relative">
+    <div className="relative group">
       <input
         type="text"
         placeholder="Search anything..."
         className={styles.searchInput}
       />
-      <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+      <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 
+                          text-gray-400 group-hover:text-red-500 
+                          transition-colors duration-200" />
     </div>
   );
 
@@ -96,7 +101,7 @@ export default function NavBar() {
                   href={item.href}
                   className={`flex items-center gap-2 px-3 py-2 text-sm font-medium
                     relative hover:text-red-600
-                    ${isActive(item.href) ? 'text-red-600' : 'text-gray-900 dark:text-white'}`}
+                    ${isActive(item.href) ? 'text-red-600' : 'text-gray-500 dark:text-white'}`}
                 >
                   {item.title}
                   <span className="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 
@@ -115,7 +120,7 @@ export default function NavBar() {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -135,7 +140,7 @@ export default function NavBar() {
             {/* Mobile Navigation Items */}
             <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2">
               {menuItems.map((item) => (
-                <div key={item.key} className="bg-white dark:bg-gray-900 rounded-xl shadow-sm">
+                <div key={item.key} className="bg-white dark:bg-gray-900 shadow-sm">
                   <Link href={item.href}>
                     <div className={styles.menuItem}>
                       <div className="flex items-center gap-3">

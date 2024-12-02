@@ -62,9 +62,9 @@ export default function Footer()  {
                         <p className="text-sm mt-2">Subscribe to our newsletter to get the latest news and updates.</p>
                         <div className="flex flex-row items-center mt-2">
                             <input type="email" placeholder="Enter your email"
-                                   className="bg-gray-900 dark:bg-gray-800 text-white px-4 py-2 rounded-md"/>
+                                   className="bg-gray-900 dark:bg-gray-800 text-white px-4 py-2"/>
                             <button
-                                className="bg-accentColor text-white font-bold py-2 px-4 rounded-md ml-2 hover:bg-green-900">Subscribe
+                                className="bg-accentColor text-white font-bold py-2 px-4 ml-2 hover:bg-green-900">Subscribe
                             </button>
                         </div>
                     </div>
