@@ -3,7 +3,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 export default function ProductsPage() {
   const router = useRouter();
 
@@ -17,7 +17,3 @@ export default function ProductsPage() {
     </div>
   );
 }
-
-export const LoadingSpinner = () => (
-  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accentColor" />
-);
