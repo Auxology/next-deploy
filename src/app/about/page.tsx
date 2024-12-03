@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import { motion } from 'framer-motion';
+import { motion, useScroll, useSpring } from "framer-motion";
+import { useEffect } from "react";
+import { useInView } from 'react-intersection-observer';
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/footer";
 import { SectionTitle } from "@/components/ui/SectionTitle";
@@ -8,8 +10,7 @@ import ScrollToTopButton from "@/components/ui/ScrollToTop";
 import { DynamicBackground } from '@/components/ui/dynamic-background';
 import { useRouter } from 'next/navigation';
 import { AiFillSafetyCertificate } from 'react-icons/ai';
-import { useScroll, useSpring, useTransform } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { useTransform } from 'framer-motion';
 
 // Add these interfaces at the top of the file
 interface FadeInWhenVisibleProps {
@@ -479,7 +480,7 @@ const CTA = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 }}
-                            className="text-base sm:text-lg text-left text-white/90 max-w-2xl mx-auto"
+                            className="text-base sm:text-lg text-left text-white/90 max-w-2xl"
                         >
                             Join us in transforming global healthcare through innovative pharmaceutical solutions. 
                             Together, we can advance patient care and contribute to a healthier future.
@@ -489,7 +490,7 @@ const CTA = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
-                            className="flex flex-col sm:flex-row gap-4 pt-4 justify-center"
+                            className="flex flex-col sm:flex-row gap-4 pt-4 "
                         >
                             <button 
                                 onClick={() => router.push('/contact')}
@@ -561,32 +562,79 @@ const CTA = () => {
 }
 
 export default function About() {
-    return (
-        <div className="bg-white dark:bg-gray-900 overflow-x-hidden">
-            <ScrollProgress />
-            <NavBar />
-            <HeroSection />
-            <div className="space-y-1"> {/* Remove visual gaps between sections */}
-                <FadeInWhenVisible>
-                    <ImpactStats />
-                </FadeInWhenVisible>
-                <FadeInWhenVisible>
-                    <MissionSection />
-                </FadeInWhenVisible>
-                <FadeInWhenVisible>
-                    <HistorySection />
-                </FadeInWhenVisible>
-                <FadeInWhenVisible>
-                    <ValuesSection />
-                </FadeInWhenVisible>
-                <FadeInWhenVisible>
-                    <CTA />
-                </FadeInWhenVisible>
-            </div>
-            <ScrollToTopButton /> {/* Remove smooth prop */}
-            <Footer />
-        </div>
-    );
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'smooth';
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="bg-white dark:bg-gray-900 overflow-x-hidden"
+    >
+      <NavBar />
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-accentColor/50 z-50 origin-left"
+        style={{ scaleX }}
+      />
+      <main className="relative">
+        <HeroSection />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <ImpactStats />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <MissionSection />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <HistorySection />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <ValuesSection />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <CTA />
+        </motion.div>
+      </main>
+      <ScrollToTopButton />
+      <Footer />
+    </motion.div>
+  );
 }
 
 // Update the CountUpCard component
