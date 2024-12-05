@@ -7,6 +7,7 @@ import Footer from "@/components/ui/footer";
 import { DynamicBackground } from "@/components/ui/dynamic-background";
 import ScrollToTopButton from "@/components/ui/ScrollToTop";
 import { FaLinkedin, FaUsers, FaIndustry, FaFlask, FaBriefcaseMedical } from "react-icons/fa";
+import Image from "next/image";
 
 const departments = [
   {
@@ -112,7 +113,7 @@ const DepartmentSection = ({ department, index }: { department: any, index: numb
             className="bg-white dark:bg-gray-800 shadow-lg group rounded-xl overflow-hidden"
           >
             <div className="relative h-72 overflow-hidden"> {/* Reduced height */}
-              <img 
+              <Image 
                 src={leader.image} 
                 alt={leader.name}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
